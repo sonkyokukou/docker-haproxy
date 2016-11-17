@@ -39,6 +39,7 @@ print_config() {
 # so HAProxy can start with the default haproxy.cfg config without throwing errors.
 grep --silent -e "web.server" /etc/hosts || echo "127.0.0.1 web.server" >> /etc/hosts
 
+systemctl start systemd-journald
 log $HAPROXY_CMD && print_config
 $HAPROXY_CHECK_CONFIG_CMD
 $HAPROXY_CMD
